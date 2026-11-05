@@ -1,0 +1,9 @@
+# 4.09
+# Sanitized fixture: edge cases. A partial scene with muted sends, a
+# config-only channel, a duplicated bus send (last one wins), and one
+# genuinely unknown line.
+/ch/01/config "Spare Mic" 1 GN 33
+/ch/01/mix/01 OFF -oo +0 POST 0
+/ch/01/mix/01 ON -30.0 +0 PRE 0
+/ch/02/config "Unused" 1 WH 34
+/weird/custom/thing 1 2 3

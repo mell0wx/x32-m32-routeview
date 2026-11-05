@@ -16,6 +16,7 @@
 // and never throws.
 
 import type {
+  ChannelProcessingSnapshot,
   DCAGroup,
   InputChannel,
   MixBus,
@@ -147,6 +148,48 @@ function parseChannelPreamp(line: string): { channel: number; summary: string } 
   const polarity = tokens[2] ? `Pol ${tokens[2]}` : undefined;
   const padOrFilter = tokens[3] ? `Pad/HPF ${tokens[3]}` : undefined;
   return { channel, summary: [`Gain ${gain}`, phantom, polarity, padOrFilter].filter(Boolean).join("; ") };
+}
+
+type ChannelProcessingKey = keyof ChannelProcessingSnapshot;
+
+function summarizeProcessing(sub: string, tokens: string[]): string {
+  const state = tokens[0] === "ON" || tokens[0] === "OFF" ? tokens[0] : (tokens[0] ?? "—");
+  const value = tokens[1];
+  switch (sub) {
+    case "delay":
+      return value ? `${state} · ${value} ms` : state;
+    case "gate":
+    case "dyn":
+      return value ? `${state} · Thr ${value}` : state;
+    case "insert": {
+      const position = tokens[1];
+      const select = tokens[2];
+      return [state, position, select ? `Sel ${select}` : undefined].filter(Boolean).join(" · ");
+    }
+    case "eq":
+      return state;
+    case "automix":
+    case "mix":
+      return value ? `${state} · ${value}` : state;
+    default:
+      return state;
+  }
+}
+
+/**
+ * Parses one channel processing line into the channel processing snapshot:
+ * delay, gate, dynamics, insert, EQ, automix, and the bare main-mix line
+ * (`/ch/NN/mix ...`). Bus sends (`/ch/NN/mix/NN ...`) are not matched here:
+ * the subcommand must be followed by whitespace or end of line, never "/".
+ */
+function parseChannelProcessing(line: string): { channel: number; key: ChannelProcessingKey; summary: string } | null {
+  const m = line.match(/^\/ch\/(\d{1,2})\/(delay|gate|dyn|insert|eq|automix|mix)(?:\s+(.*)|$)/);
+  if (!m) return null;
+  const sub = m[2];
+  const tokens = (m[3] ?? "").trim().split(/\s+/).filter(Boolean);
+  const key: ChannelProcessingKey =
+    sub === "dyn" ? "dynamics" : sub === "mix" ? "mainMix" : (sub as ChannelProcessingKey);
+  return { channel: parseInt(m[1], 10), key, summary: summarizeProcessing(sub, tokens) };
 }
 
 function parseChannelSend(line: string): { channel: number; send: NonNullable<InputChannel["sends"]>[number] } | null {
@@ -281,8 +324,8 @@ function categorizeUnrecognizedLine(line: string): UnrecognizedCategoryKey {
   if (/^\/config\/talk\b/.test(line) || /^\/config\/talk\//.test(line)) return "Talkback";
   if (/^\/config\/dp48\b/.test(line) || /^\/config\/dp48\//.test(line)) return "DP48";
   if (/^\/config\/routing\b/.test(line) || /^\/config\/routing\//.test(line)) return "Routing Detail";
-  if (/^\/config\//.test(line)) return "Console Config";
   if (/^\/mute\//.test(line) || /^\/config\/mute\b/.test(line)) return "Mute Groups";
+  if (/^\/config\//.test(line)) return "Console Config";
   if (/^\/fx\//.test(line)) return "Effects Rack";
   if (/^\/headamp\//.test(line)) return "Headamp";
   if (/^\/(scene|snippet|safes|cue|show)\b/.test(line)) return "Scene Metadata";
@@ -330,6 +373,13 @@ export const x32M32Parser: MixerParser = {
       if (preamp) {
         const channel = ensureChannel(channelMap, preamp.channel);
         channel.processing = { ...(channel.processing ?? {}), preamp: preamp.summary };
+        continue;
+      }
+
+      const processing = parseChannelProcessing(line);
+      if (processing) {
+        const channel = ensureChannel(channelMap, processing.channel);
+        channel.processing = { ...(channel.processing ?? {}), [processing.key]: processing.summary };
         continue;
       }
 

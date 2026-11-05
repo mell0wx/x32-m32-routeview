@@ -13,11 +13,13 @@ not promises or currently shipped features unless listed under **Implemented**.
 - parser, scene-model, topology, upload, export, routing, and metadata tests
 - route-graph legend and plain-language route sentences, plus a how-to-read note on the printed routing chart
 - print pagination consistency: paper-size-aware page setup, widows/orphans control, and keep-together rules for section titles, summary grids, and table headers
+- channel processing parsed into the channel processing snapshot (delay, gate, dynamics, insert, EQ, automix, main mix) and shown in exports, including the Insert column
+- sanitized `.scn` fixture corpus (`src/test/fixtures/`): a full Sunday service scene and an edge-case scene, parsed by tests; mute-group lines now categorize as Mute Groups instead of Console Config
 
 ## Near-term candidates
 
-- expand the sanitized fixture corpus across mixer/editor/firmware variations
-- improve parser coverage for categories currently summarized as unsupported
+- expand the fixture corpus further across editor exports and firmware variations
+- parser coverage for the remaining categorized-only groups: bus/matrix/main processing, aux inputs, and FX returns
 - add browser-level accessibility and import/export regression checks
 - measure large valid scenes on representative lower-power laptops
 
