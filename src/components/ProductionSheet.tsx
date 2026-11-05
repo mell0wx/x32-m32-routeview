@@ -132,6 +132,10 @@ export function ProductionSheet({ scene, printMode = false, printOptions = defau
       </section>
 
       <GuideSection id="routing-chart" index="02" title="Professional Routing Chart" meta="Inputs, buses, DCAs, and outputs" className="routing-chart-section">
+        <p className="prod-muted routing-chart-explainer">
+          Read left to right: inputs send to buses, buses feed outputs, and DCAs control groups of inputs. Blue panels
+          are inputs and sends; green panels are buses, groups, and outputs.
+        </p>
         <div className="condensed-chart-grid">
           <div className="condensed-chart-panel">
             <h3>Inputs and Sends</h3>

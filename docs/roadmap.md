@@ -11,13 +11,14 @@ not promises or currently shipped features unless listed under **Implemented**.
 - Markdown, HTML, JSON, plain-text, CSV, and browser print/PDF exports
 - demo scene, upload validation, loading status, replacement flow, and empty states
 - parser, scene-model, topology, upload, export, routing, and metadata tests
+- route-graph legend and plain-language route sentences, plus a how-to-read note on the printed routing chart
+- print pagination consistency: paper-size-aware page setup, widows/orphans control, and keep-together rules for section titles, summary grids, and table headers
 
 ## Near-term candidates
 
 - expand the sanitized fixture corpus across mixer/editor/firmware variations
 - improve parser coverage for categories currently summarized as unsupported
 - add browser-level accessibility and import/export regression checks
-- improve route-graph explanations and print pagination consistency
 - measure large valid scenes on representative lower-power laptops
 
 ## Future ideas

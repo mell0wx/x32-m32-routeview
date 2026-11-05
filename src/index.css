@@ -1044,6 +1044,8 @@
     --print-soft: #f8fafc;
     font-size: 9pt;
     line-height: 1.35;
+    orphans: 3;
+    widows: 3;
   }
 
   .print-view[data-density="compact"] { font-size: 8pt; line-height: 1.25; }
@@ -1085,7 +1087,9 @@
   .prod-meta strong { color: #111827 !important; }
   .prod-section { margin-top: 12px; }
   .guide-section { break-inside: auto; page-break-inside: auto; }
-  .prod-section-title { margin-bottom: 5px; padding-bottom: 4px; border-bottom: 1px solid #cbd5e1 !important; page-break-after: avoid; }
+  .prod-section-title { margin-bottom: 5px; padding-bottom: 4px; border-bottom: 1px solid #cbd5e1 !important; break-inside: avoid; page-break-inside: avoid; page-break-after: avoid; break-after: avoid; }
+  .quick-ref-grid, .guide-metric-grid { break-inside: avoid; page-break-inside: avoid; }
+  .routing-chart-explainer { margin: 0 0 5px; color: var(--print-muted) !important; font-size: 7.5pt; }
   .prod-section-title h2 { color: #111827 !important; font-size: 10pt; }
   .prod-section-title > span { color: #64748b !important; font-size: 6.5pt; }
   .prod-section-index { width: 18px; height: 18px; background: var(--print-accent) !important; color: #fff !important; font-size: 7pt; }
@@ -1099,7 +1103,7 @@
   .routing-chart-section { page-break-before: auto; break-before: auto; }
   .condensed-chart-grid { grid-template-columns: 1fr; gap: 8mm; }
   .condensed-chart-panel { border: 1px solid #cbd5e1 !important; border-radius: 4px; background: #fff !important; overflow: hidden; }
-  .condensed-chart-panel h3 { background: #e2e8f0 !important; color: #111827 !important; border-bottom: 1px solid #cbd5e1 !important; padding: 4px 5px; font-size: 6.5pt; }
+  .condensed-chart-panel h3 { background: #e2e8f0 !important; color: #111827 !important; border-bottom: 1px solid #cbd5e1 !important; padding: 4px 5px; font-size: 6.5pt; break-after: avoid; page-break-after: avoid; }
   .condensed-table-wrap { max-height: none; overflow: visible; }
   .condensed-table { table-layout: fixed; font-size: 7.2pt; }
   .condensed-table thead { display: table-header-group; }

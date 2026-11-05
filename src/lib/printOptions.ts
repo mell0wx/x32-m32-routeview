@@ -37,6 +37,14 @@ export const defaultPrintOptions: PrintOptions = {
   showUnassigned: false,
 };
 
+/**
+ * The CSS `@page` size for a paper choice. The print stylesheet defaults to
+ * A4, so the print view overrides it with this value when Letter is selected.
+ */
+export function pageSizeForPaper(paper: PrintPaper): "A4" | "Letter" {
+  return paper === "letter" ? "Letter" : "A4";
+}
+
 export const printThemeLabels: Record<PrintTheme, string> = {
   routeview: "RouteView Blue",
   console: "Console Dark",
