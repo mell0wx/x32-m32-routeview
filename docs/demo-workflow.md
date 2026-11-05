@@ -111,6 +111,8 @@ A practical handoff flow for a church AV team or venue engineer is:
 
 This is especially useful when a replacement operator needs to understand the showfile without opening X32-Edit first.
 
+See [docs/handoff-example.md](handoff-example.md) for a full Sunday-service handoff example with a volunteer onboarding checklist and pre-service verification steps.
+
 ## Screenshots
 
 The repo currently includes verified screenshots that match the docs flow:
