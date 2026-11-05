@@ -57,4 +57,15 @@ describe("scene exporters", () => {
     expect(plainText).toContain("Volunteer Console Guide");
     expect(plainText).not.toContain("|");
   });
+
+  it("exports the insert column in channel processing", () => {
+    const withInsert = {
+      ...scene,
+      inputs: [{ number: 1, name: "Kick", processing: { insert: "ON · POST · Sel 1" } }],
+    };
+
+    expect(sceneToMarkdown(withInsert, { includeChannelProcessing: true })).toContain("Insert");
+    expect(sceneToMarkdown(withInsert, { includeChannelProcessing: true })).toContain("ON · POST · Sel 1");
+    expect(combinedCSV(withInsert, { includeChannelProcessing: true })).toContain("Insert");
+  });
 });

@@ -125,6 +125,7 @@ function processingSummary(scene: MixerScene): (string | number | undefined)[][]
       c.processing?.preamp ?? "",
       c.processing?.gate ?? "",
       c.processing?.dynamics ?? "",
+      c.processing?.insert ?? "",
       c.processing?.eq ?? "",
       c.processing?.mainMix ?? "",
       c.processing?.automix ?? "",
@@ -341,7 +342,7 @@ export function sceneToMarkdown(scene: MixerScene, options?: ExportOptions): str
 
   if (opts.includeChannelProcessing && hasChannelProcessing(scene)) {
     lines.push("### Channel Processing", "");
-    lines.push(mdTable(["Ch", "Name", "Delay", "Preamp", "Gate", "Dynamics", "EQ", "Main Mix", "Automix"], processingSummary(scene)));
+    lines.push(mdTable(["Ch", "Name", "Delay", "Preamp", "Gate", "Dynamics", "Insert", "EQ", "Main Mix", "Automix"], processingSummary(scene)));
     lines.push("");
   }
 
@@ -457,7 +458,7 @@ function legacySceneToMarkdown(scene: MixerScene, options?: ExportOptions): stri
 
   if (opts.includeChannelProcessing && hasChannelProcessing(scene)) {
     lines.push(`---`, "", `## Channel Processing`, "");
-    lines.push(mdTable(["Ch", "Name", "Delay", "Preamp", "Gate", "Dynamics", "EQ", "Main Mix", "Automix"], processingSummary(scene)));
+    lines.push(mdTable(["Ch", "Name", "Delay", "Preamp", "Gate", "Dynamics", "Insert", "EQ", "Main Mix", "Automix"], processingSummary(scene)));
     lines.push("");
   }
 
@@ -553,7 +554,7 @@ export function combinedCSV(scene: MixerScene, options?: ExportOptions): string 
   }
 
   if (opts.includeChannelProcessing && hasChannelProcessing(scene)) {
-    sections.push(toCSV([[], ["## CHANNEL PROCESSING"], ["Channel", "Name", "Delay", "Preamp", "Gate", "Dynamics", "EQ", "Main Mix", "Automix"], ...processingSummary(scene)]));
+    sections.push(toCSV([[], ["## CHANNEL PROCESSING"], ["Channel", "Name", "Delay", "Preamp", "Gate", "Dynamics", "Insert", "EQ", "Main Mix", "Automix"], ...processingSummary(scene)]));
   }
 
   if (opts.includeChannelSends && hasChannelSends(scene)) {
