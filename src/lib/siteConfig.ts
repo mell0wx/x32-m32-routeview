@@ -6,6 +6,13 @@ export const ROUTEVIEW = {
   repositoryUrl: "https://github.com/mell0wx/x32-m32-routeview",
   description:
     "Turn Behringer X32 and Midas M32 scene files into readable routing documentation and production handoff guides.",
+  /**
+   * RouteView Pro waitlist form endpoint (Formspree form URL, for example
+   * "https://formspree.io/f/abcd1234"). Leave empty until the form exists;
+   * the signup form stays hidden and only the Pro teaser renders.
+   * See docs/growth.md for setup.
+   */
+  waitlistFormUrl: "",
 } as const;
 
 export function resolveSiteUrl(value: string | undefined, fallback: string = ROUTEVIEW.localUrl) {
