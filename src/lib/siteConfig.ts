@@ -3,7 +3,7 @@ export const ROUTEVIEW = {
   productionUrl: "https://routeview.mell0wx.tech",
   localUrl: "http://localhost:8080",
   portfolioUrl: "https://mell0wx.tech",
-  repositoryUrl: "https://github.com/egrexsec/x32-m32-routeview",
+  repositoryUrl: "https://github.com/mell0wx/x32-m32-routeview",
   description:
     "Turn Behringer X32 and Midas M32 scene files into readable routing documentation and production handoff guides.",
 } as const;

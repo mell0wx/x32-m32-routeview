@@ -4,7 +4,7 @@ RouteView turns **Behringer X32** and **Midas M32** scene (`.scn`) files into re
 
 **Production URL:** <https://routeview.mell0wx.tech>
 
-**Source:** <https://github.com/egrexsec/x32-m32-routeview>
+**Source:** <https://github.com/mell0wx/x32-m32-routeview>
 
 **Status:** v1.0.0 is released; the branded Vercel custom-domain cutover requires the owner steps in [docs/deployment.md](docs/deployment.md).
 
@@ -120,14 +120,14 @@ public/         static assets
 
 ## Roadmap
 
-[docs/roadmap.md](docs/roadmap.md) distinguishes shipped v1.0.0 behavior from near-term candidates and future ideas. Major unreleased ideas include scene comparison, richer routing-map layers, and additional console adapters.
+[docs/handoff-example.md](docs/handoff-example.md) walks a church AV team through a Sunday-service handoff using RouteView. [docs/roadmap.md](docs/roadmap.md) distinguishes shipped v1.0.0 behavior from near-term candidates and future ideas. Major unreleased ideas include scene comparison, richer routing-map layers, and additional console adapters.
 
 ## Contributing and security
 
 - [Contributing guide](CONTRIBUTING.md)
 - [Security policy](SECURITY.md)
-- [Issue tracker](https://github.com/egrexsec/x32-m32-routeview/issues)
-- [v1.0.0 release](https://github.com/egrexsec/x32-m32-routeview/releases/tag/v1.0.0)
+- [Issue tracker](https://github.com/mell0wx/x32-m32-routeview/issues)
+- [v1.0.0 release](https://github.com/mell0wx/x32-m32-routeview/releases/tag/v1.0.0)
 
 Do not attach private production scene files to public issues. Reduce parser reports to sanitized minimum fixtures.
 

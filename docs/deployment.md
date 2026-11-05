@@ -5,7 +5,7 @@ RouteView is an independently deployable Vite application. The portfolio at
 
 ## Vercel assumptions
 
-- Repository: `egrexsec/x32-m32-routeview`
+- Repository: `mell0wx/x32-m32-routeview`
 - Framework preset: Vite
 - Install command: `npm ci`
 - Build command: `npm run build`
