@@ -12,7 +12,7 @@ export const ROUTEVIEW = {
    * the signup form stays hidden and only the Pro teaser renders.
    * See docs/growth.md for setup.
    */
-  waitlistFormUrl: "",
+  waitlistFormUrl: "https://formspree.io/f/maeekpaj",
 } as const;
 
 export function resolveSiteUrl(value: string | undefined, fallback: string = ROUTEVIEW.localUrl) {

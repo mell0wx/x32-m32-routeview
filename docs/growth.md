@@ -32,7 +32,9 @@ The signup form posts to a plain form endpoint so the static site needs no
 backend. Until the endpoint is configured, only the teaser renders and the
 form stays hidden.
 
-Setup (about two minutes, free tier is enough to start):
+Setup (done 2026-11-05 — free Formspree account, form "RouteView Pro
+waitlist", endpoint already in `ROUTEVIEW.waitlistFormUrl` in
+`src/lib/siteConfig.ts`):
 
 1. Create a free account at <https://formspree.io> and create a new form.
 2. Copy the form endpoint URL (it looks like
