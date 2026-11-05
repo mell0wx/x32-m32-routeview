@@ -1,7 +1,13 @@
 import { useMemo, useState } from "react";
 import type { MixerScene } from "@/types/routing";
-import { GitBranch, Search, Workflow } from "lucide-react";
-import { buildTopologyGraphView, type TopologyNode } from "@/lib/topologyGraph";
+import { GitBranch, Search } from "lucide-react";
+import {
+  buildTopologyGraphView,
+  type TopologyEdgeKind,
+  type TopologyNode,
+  type TopologyNodeKind,
+} from "@/lib/topologyGraph";
+import { describeEdge, EDGE_KIND_EXPLANATIONS, NODE_KIND_EXPLANATIONS } from "@/lib/routeExplanations";
 
 export function SignalGraphTab({ scene }: { scene: MixerScene }) {
   const [query, setQuery] = useState("");
@@ -35,8 +41,8 @@ export function SignalGraphTab({ scene }: { scene: MixerScene }) {
           <div>
             <h3 className="text-sm font-semibold">Visual Signal Graph</h3>
             <p className="mt-1 text-xs text-muted-foreground">
-              Normalized topology view showing parsed routing entities. This is not React Flow yet, but it now runs on a
-              reusable node-edge model instead of ad hoc UI grouping.
+              Read left to right: sound sources send to buses, buses feed outputs, and route blocks show how physical
+              inputs are patched to channels.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-2 text-right md:grid-cols-4">
@@ -46,6 +52,26 @@ export function SignalGraphTab({ scene }: { scene: MixerScene }) {
             <GraphStat label="Routes" value={topology.summary.signalTraceCount} />
           </div>
         </div>
+      </div>
+
+      <div className="rounded-lg border bg-muted/20 p-4">
+        <h4 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">How to read this graph</h4>
+        <dl className="mt-2 grid gap-2 text-sm md:grid-cols-2">
+          {(Object.keys(NODE_KIND_EXPLANATIONS) as TopologyNodeKind[]).map((kind) => (
+            <div key={kind} className="flex gap-2">
+              <dt className="shrink-0 font-semibold">{NODE_KIND_EXPLANATIONS[kind].label}</dt>
+              <dd className="text-muted-foreground">{NODE_KIND_EXPLANATIONS[kind].meaning}</dd>
+            </div>
+          ))}
+          {(Object.keys(EDGE_KIND_EXPLANATIONS) as TopologyEdgeKind[]).map((kind) => (
+            <div key={kind} className="flex gap-2">
+              <dt className="shrink-0 font-mono text-[11px] uppercase tracking-wide text-muted-foreground">
+                {kind}
+              </dt>
+              <dd className="text-muted-foreground">{EDGE_KIND_EXPLANATIONS[kind].meaning}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
 
       <div className="rounded-lg border bg-muted/20 p-3">
@@ -93,10 +119,9 @@ export function SignalGraphTab({ scene }: { scene: MixerScene }) {
                 <span className="rounded-full border bg-background px-2 py-0.5 font-mono text-[11px] uppercase tracking-wide text-muted-foreground">
                   {edge.kind}
                 </span>
-                <span className="font-semibold">{nodeLookup.get(edge.source)?.label ?? edge.source}</span>
-                <Workflow className="h-3.5 w-3.5 text-primary" />
-                <span className="text-muted-foreground">{nodeLookup.get(edge.target)?.label ?? edge.target}</span>
-                {edge.label ? <span className="text-xs text-muted-foreground">({edge.label})</span> : null}
+                <span>
+                  {describeEdge(edge, nodeLookup.get(edge.source)?.label ?? edge.source, nodeLookup.get(edge.target)?.label ?? edge.target)}
+                </span>
               </div>
             ))
           ) : (
