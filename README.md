@@ -122,6 +122,8 @@ public/         static assets
 
 [docs/handoff-example.md](docs/handoff-example.md) walks a church AV team through a Sunday-service handoff using RouteView. [docs/roadmap.md](docs/roadmap.md) distinguishes shipped v1.0.0 behavior from near-term candidates and future ideas. Major unreleased ideas include scene comparison, richer routing-map layers, and additional console adapters.
 
+[docs/growth.md](docs/growth.md) covers the analytics and RouteView Pro waitlist setup used to measure demand before building any paid tier.
+
 ## Contributing and security
 
 - [Contributing guide](CONTRIBUTING.md)

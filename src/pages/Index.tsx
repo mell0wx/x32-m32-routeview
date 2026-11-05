@@ -8,6 +8,7 @@ import { SignalGraphTab } from "@/components/SignalGraphTab";
 import { ParserBucketsTab } from "@/components/ParserBucketsTab";
 import { ProductionSheet } from "@/components/ProductionSheet";
 import { ExportTab } from "@/components/ExportTab";
+import WaitlistSection from "@/components/WaitlistSection";
 import { PrintView } from "@/components/PrintView";
 import { WarningsPanel } from "@/components/WarningsPanel";
 import { RouteCoveragePanel } from "@/components/RouteCoveragePanel";
@@ -120,6 +121,10 @@ const Index = () => {
         ) : (
           <EmptyHint />
         )}
+      </div>
+
+      <div className="px-4 pb-6 no-print">
+        <WaitlistSection />
       </div>
 
       <footer className="border-t px-4 py-6 text-center text-xs text-muted-foreground no-print">
