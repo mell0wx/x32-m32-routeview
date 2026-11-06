@@ -138,19 +138,10 @@ export function UploadPanel({ scene, onParseText, onLoadDemo, onClear }: Props) 
             const file = event.dataTransfer.files?.[0];
             if (file) handleFile(file);
           }}
-          onKeyDown={(event) => {
-            if (event.key === "Enter" || event.key === " ") {
-              event.preventDefault();
-              inputRef.current?.click();
-            }
-          }}
           className={[
             "relative flex min-h-[17rem] flex-col items-center justify-center rounded-lg border-2 border-dashed p-8 text-center transition",
             dragging ? "border-primary bg-primary/5" : "border-border bg-muted/40",
           ].join(" ")}
-          role="button"
-          tabIndex={0}
-          aria-label="Upload an X32 or M32 scene file"
         >
           <FileUp className="h-8 w-8 text-muted-foreground" />
           <p className="mt-3 text-base font-semibold">{scene ? "Drop a replacement X32/M32 .scn file here" : "Drop your X32/M32 .scn file here"}</p>
@@ -164,6 +155,7 @@ export function UploadPanel({ scene, onParseText, onLoadDemo, onClear }: Props) 
             ref={inputRef}
             type="file"
             accept=".scn"
+            aria-label="Choose an X32 or M32 scene file"
             className="hidden"
             onChange={(event) => {
               const file = event.target.files?.[0];

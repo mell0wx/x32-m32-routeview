@@ -93,7 +93,7 @@ export function ExportTab({
             <h2 id="export-designer-title">Customize the handoff</h2>
             <p>Choose the audience, visual system, page format, and document metadata before printing.</p>
           </div>
-          <div className="theme-swatches" aria-label="Selected print palette">
+          <div className="theme-swatches" aria-hidden="true">
             <span style={{ backgroundColor: printOptions.accentColor }} />
             <span />
             <span />
