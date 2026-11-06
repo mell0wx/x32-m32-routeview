@@ -5,6 +5,7 @@ import { RoutingSummary } from "@/components/RoutingSummary";
 import { BusesTab, DCAsTab, InputsTab, OutputsTab } from "@/components/RoutingTabs";
 import { SignalFlowTab } from "@/components/SignalFlowTab";
 import { SignalGraphTab } from "@/components/SignalGraphTab";
+import { CompareTab } from "@/components/CompareTab";
 import { ParserBucketsTab } from "@/components/ParserBucketsTab";
 import { ProductionSheet } from "@/components/ProductionSheet";
 import { ExportTab } from "@/components/ExportTab";
@@ -205,6 +206,7 @@ function AdvancedTools({ scene }: { scene: MixerScene }) {
           <TabsTrigger value="outputs">Outputs</TabsTrigger>
           <TabsTrigger value="signal">Signal Flow</TabsTrigger>
           <TabsTrigger value="graph">Signal Graph</TabsTrigger>
+          <TabsTrigger value="compare">Compare Scenes</TabsTrigger>
           <TabsTrigger value="engineering">Items RouteView Could Not Explain</TabsTrigger>
         </TabsList>
       </div>
@@ -214,6 +216,7 @@ function AdvancedTools({ scene }: { scene: MixerScene }) {
       <TabsContent value="outputs"><OutputsTab scene={scene} /></TabsContent>
       <TabsContent value="signal"><SignalFlowTab scene={scene} /></TabsContent>
       <TabsContent value="graph"><SignalGraphTab scene={scene} /></TabsContent>
+      <TabsContent value="compare"><CompareTab scene={scene} /></TabsContent>
       <TabsContent value="engineering"><ParserBucketsTab scene={scene} /></TabsContent>
     </Tabs>
   );
